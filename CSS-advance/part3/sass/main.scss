@@ -1,0 +1,258 @@
+/*
+history
+part2: 将所有绝对的px值用 rem 代替
+part3: 在本地编译scss，生成css文件
+*/
+
+$color-primary: #7ed56f;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+$color-white: #fff;
+$color-grey: #777;
+*,
+*::after,
+*::before {
+    /* 通用选择器，清除所有样式 */
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* 浏览器默认是16px  */
+    font-size: 62.5%;  /* set root font-size ,so 1 rem = 10 px */
+}
+
+body {
+    /* 设置字体 */
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: $color-grey;
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+.header {
+    /* 视口 95% */
+    height: 95vh;
+    /* 设置图片背景，并设置一个绿色的渐变，从左上角到右下角，并设置透明度，为了能看见照片 */
+    /* https://www.runoob.com/css3/css3-gradients.html 关于渐变的更多信息 */
+    background-image: linear-gradient(to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)),
+        url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    /* 顺时针指定多边形的坐标 裁剪图片*/
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    height: 3.5rem;
+
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* 因为是以盒子的左上角作为参考的，因此需要将盒子移动到真正的中心 */
+    transform: translate(-50%, -50%);
+    /* center 剧中对齐  right left 左、右对齐  justify两端对齐 */
+    text-align: center;
+}
+
+.heading-primary {
+    color: $color-white;
+    /* 转换为大写字母 */
+    text-transform: uppercase;
+
+    backface-visibility: hidden;
+    /* 消除抖动*/
+    margin: 6rem;
+}
+
+.heading-primary--main {
+    /* 设置为块 可以让文字达到整个高度 */
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    /* 设置动画 的name 和持续时间 必须设置name 和 duration属性*/
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* animation-delay: 3s; */
+    /* animation-iteration-count: 3; */
+    animation-timing-function: ease-out;
+    /* 淡出淡入 */
+
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+
+    /* 设置动画 的name 和持续时间 */
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    /* animation-delay: 3s; */
+    /* animation-iteration-count: 3; */
+    animation-timing-function: ease-out;
+    /* 淡出淡入 */
+
+}
+
+/* 使用CSS实现动画
+1. 只使用过渡属性
+    为了浏览器的性能，最好只为两个不同的属性设置动画
+    opacity and transform
+*/
+
+@keyframes moveInLeft {
+    0% {
+        /* 开始时，初始状态 */
+        opacity: 0;
+        /* 水平移动x坐标 */
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        /* 结束时 */
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        /* 开始时，初始状态 */
+        opacity: 0;
+        /* 水平移动x坐标 */
+        transform: translateX(10rem);
+    }
+
+    80% {
+        /* deg 是旋转的单位 */
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        /* 结束时 */
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        /* 开始时，初始状态 */
+        opacity: 0;
+        /* 水平移动Y坐标 */
+        transform: translateY(3rem);
+    }
+
+    100% {
+        /* 结束时 */
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* 点击过和未点击过的采取相同的样式 */
+/* a:link - 正常，未访问过的链接
+   a:visited - 用户已访问过的链接
+   a:hover - 当用户鼠标放在链接上时
+   a:active - 链接被点击的那一刻 */
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    /* 分别给顶部和底部一个填充 */
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    /* CSS3 过渡是元素从一种样式逐渐改变为另一种的效果。要实现这一点，必须规定两项内容：
+    指定要添加效果的CSS属性,指定效果的持续时间。 */
+    transition: all .2s;
+    position: relative;
+
+}
+
+.btn:hover {
+    /* 都是相对于初始状态 */
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+
+}
+
+.btn--white {
+    background-color: $color-white;
+    color: $color-grey;
+}
+
+/* 实现button的动画 
+    添加了一个与button一样的元素，但是默认情况是被button所覆盖
+    当鼠标hover到button时，通过缩放使得大小超过button到部分看见
+    通过设置透明度为0实现演示的效果
+*/
+
+/* CSS 伪元素是用来添加一些选择器的特殊效果。 */
+.btn::after {
+    content: "";
+    /* 必须包含此属性，尽管没有使用 */
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* z-index 属性指定一个元素的堆叠顺序, 根据大小显示优先级，所以该元素正常是藏在button后面的 */
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn--white::after {
+    background-color: $color-white;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    /* 设置透明度 0:完全透明 ，1:完全不透明*/
+}
+
+
+.btn--animated {
+    /* 设置动画 的name 和持续时间 必须设置name 和 duration属性*/
+    animation-name: moveInBottom;
+    animation-duration: .5s;
+    animation-delay: 0.75s;
+    /* animation-iteration-count: 3; */
+    animation-timing-function: ease-out;
+    /* 淡出淡入 */
+    /* 但是我们会发现button会显示上去，然后消失再出现动画 */
+    /* animation-fill-mode 属性规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式。 */
+    animation-fill-mode: backwards;
+}
