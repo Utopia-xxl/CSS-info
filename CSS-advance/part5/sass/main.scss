@@ -1,0 +1,27 @@
+/*
+history
+part2: 将所有绝对的px值用 rem 代替
+part3: 在本地编译scss，生成css文件
+part4: 7+1模式
+*/
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/button";
+@import "components/card";
+@import "components/composition";
+@import "components/feature-box";
+
+@import "layout/grid";
+@import "layout/header";
+
+@import "pages/home";
+
+
+

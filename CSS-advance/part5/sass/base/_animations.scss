@@ -1,0 +1,59 @@
+/* 使用CSS实现动画
+1. 只使用过渡属性
+    为了浏览器的性能，最好只为两个不同的属性设置动画
+    opacity and transform
+*/
+
+@keyframes moveInLeft {
+    0% {
+        /* 开始时，初始状态 */
+        opacity: 0;
+        /* 水平移动x坐标 */
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        /* 结束时 */
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        /* 开始时，初始状态 */
+        opacity: 0;
+        /* 水平移动x坐标 */
+        transform: translateX(10rem);
+    }
+
+    80% {
+        /* deg 是旋转的单位 */
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        /* 结束时 */
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        /* 开始时，初始状态 */
+        opacity: 0;
+        /* 水平移动Y坐标 */
+        transform: translateY(3rem);
+    }
+
+    100% {
+        /* 结束时 */
+        opacity: 1;
+        transform: translate(0);
+    }
+}

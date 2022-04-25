@@ -1,0 +1,36 @@
+.header {
+    /* 视口 95% */
+    height: 95vh;
+    /* 设置图片背景，并设置一个绿色的渐变，从左上角到右下角，并设置透明度，为了能看见照片 */
+    /* https://www.runoob.com/css3/css3-gradients.html 关于渐变的更多信息 */
+    background-image: linear-gradient(to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)),
+        url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    /* 顺时针指定多边形的坐标 裁剪图片*/
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+
+    &__logo {
+        height: 3.5rem;
+
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        /* 因为是以盒子的左上角作为参考的，因此需要将盒子移动到真正的中心 */
+        transform: translate(-50%, -50%);
+        /* center 剧中对齐  right left 左、右对齐  justify两端对齐 */
+        text-align: center;
+    }
+}

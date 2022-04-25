@@ -1,0 +1,19 @@
+// 关于整个项目
+*,
+*::after,
+*::before {
+    /* 通用选择器，清除所有样式 */
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* 浏览器默认是16px  */
+    font-size: 62.5%;
+    /* set root font-size ,so 1 rem = 10 px */
+}
+
+body {
+    box-sizing: border-box;
+}
