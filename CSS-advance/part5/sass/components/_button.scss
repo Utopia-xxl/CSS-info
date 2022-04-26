@@ -47,6 +47,15 @@
         }
     }
 
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
     /* 实现button的动画 
     添加了一个与button一样的元素，但是默认情况是被button所覆盖
     当鼠标hover到button时，通过缩放使得大小超过button到部分看见
